@@ -1,0 +1,82 @@
+.containerheader {
+    width: 100%;
+    background: #48b281;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    
+
+
+    & .containerLogo {
+    width: 40%;
+    
+    }
+
+    & .containerLogo img {
+        width: 70px;
+       
+    }
+
+    & .containerMenu {
+        width: 60%;
+         
+    }
+
+    & .containerMenu nav {
+        padding: 15px;
+       
+    }
+
+    & .containerMenu nav a {
+        color: white;
+        font-size: 18px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        margin: 15px;
+        text-decoration: none;
+       
+    }
+
+    & .containerMenu nav a:hover{
+        color: white;
+        font-size: 20px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.589);
+        border-radius: 16px;
+        
+    }
+}
+
+main{
+    width: 100%;
+
+    & .containerBanner a {
+        width: 27%;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    & .containerBanner img {
+        width: 70%;
+        border-radius: 16px;
+        box-shadow: 8px 8px 5px rgba(112, 112, 112, 0.548);
+        margin: 30px;
+        padding: 20px;
+    }
+
+    & .containerBanner img:hover{
+        width: 80%;
+        transition: 0.7s;
+        border-radius: 16px;
+        box-shadow: 8px 8px 5px rgba(99, 98, 98, 0.404);
+    }
+
+}
+    .divimagem {
+   transform: translate(2%, 25%);
+   width: 50%;
+   
+}
