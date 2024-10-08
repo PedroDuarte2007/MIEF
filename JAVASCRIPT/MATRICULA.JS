@@ -2,93 +2,94 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 
-//Conexao com banco de dados (SGBD MySQL)
-const con = mysql.createCLIConnection({
-    users: 'root',
+const con = mysql.createConnection({
+    user: 'root',
     host: 'localhost',
-    database: 'EscolaMIEF'
+    database:'escolamief'
 });
 
-//Rota de Teste
-const teste= (req,res) => {
-    res.send("Back-End respondendo");
+con.connect((err) => {
+    if(err) {
+        console.error('Erro ao conectar ao banco de dados', err);
+        return;
+    }
+    console.log('Conectado ao banco de dados.');
+});
+
+const teste = (req, res) => {
+    res.send("Back-end respondendo");
 }
 
-//CRUD - create
-const createCLI= (req, res) => {
-    let cpf = req.query.cpf;
-    let nomecompleto = req.query.nomecompleto;
-    let endereco = req.query.endereco;
-    let nascimento = req.query.nascimento;
-    let telefone = req.query.telefone;
-    let plano = req.query.plano;
-    let email = req.query.email;
-    let genero = req.query.genero;
-    let query = `INSERT INTO  Alunos(cpf, nome completo, endereco, nascimento, telefone, plano, email, genero) VALUE`;
-    query += `('${cpf}', '${nomecompleto}, '${endereco}', '${nascimento}', '${telefone}', '${plano}', '${email}', '${genero}');`;
-    con.query(query,(err,result)=>{
-        if (err){
-            res.json(err);
+// CRUD - Create alunos
+const createalunos = (req, res) => {
+    const {email, telefone, nome, cpf, nascimento}
+        =req.body;
+
+    const query = 'INSERT INTO alunos (email, telefone, nome, cpf, nascimento) VALUES(?, ?, ?, ?, ?)';
+    con.query(query, [email, telefone, nome, cpf, nascimento], (err,result) => {
+        if(err) {
+            res.status(500).json({error: err.message});
+        } else {
+            res.status(201).json({message: 'alunos criado com sucesso', result});
+        }
+
+    });
+}
+
+//CRUD - Read alunoss
+const readalunos = (req, res) => {
+    con.query("SELECT * FROM alunos",(err,result) => {
+        if(err) {
+            res.status(500).json({error: err.message});
         } else {
             res.json(result);
         }
     });
-    console.log("Cadastrado com sucesso!");
 }
 
-//CRUD - Read
-const read = (req,res) => {
-    con.query("SELECT * FROM EscolaMIEF", (err, result) => {
-        if (err)
-            res.json(err);
-        else
-        res.json(result);
+// CRUD - Update alunos
+const updatealunos = (req, res) => {
+    const {email, telefone, nome, cpf, nascimento} = req.body;
 
-    });
-}
-
-//Configurações de Saida - Front-End
-app.use(express.json());
-app.use(cors());
-
-//Rotas de Saide - Front-End
-app.get("/", teste);
-app.get("/Alunos/createCLI", createCLI);
-app.get("/Alunos", read);
-
-
-
-//Teste e porta no console
-app.listen(3000, () => {
-    console.log("Cadastrado com Sucesso!");
-});
-
-// CRUD - Delete
-const deleteClient = (req, res) => {
-    const { id } = req.params;
-
-    const query = 'DELETE FROM Clientes WHERE ClienteID = ?';
-    con.query(query, [id], (err, result) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-        } else {
-            res.json({ message: 'Cliente removido com sucesso', result });
+    const query = 'UPDATE alunos SET email = ?, telefone = ?, nome = ?, cpf = ?, WHERE nascimento = ?'
+    con.query(query, [email, telefone, nome, cpf, nascimento],(err, result)=>{
+        if(err) {
+            res.status(500).json({error: err.message});
+        }else {
+            res.json({message:'alunos atualizada com sucesso', result});
         }
     });
 }
 
-// Configurações de saída - FrontEnd
+
+//CRUD - Delete Veiculo
+const deletealunos = (req, res) => {
+    const {email, telefone, nome, cpf, nascimento} = req.params;
+
+    const query = 'DELETE FROM alunos WHERE email = ?';
+    con.query(query, [email, telefone, nome, cpf, nascimento], (err,result)=> {
+        if(err) {
+            res.status(500).json({error:err.message});
+        }else {
+            res.json({message: 'alunos removida com sucesso', result});
+        }
+    });
+}
+
+//Saida Front
 const app = express();
 app.use(express.json());
 app.use(cors());
-
-// Rotas de Saída - FrontEnd
 app.get("/", teste);
-app.post("/clientes", create); 
-app.get("/clientes", read);
+
+//alunoss para Veiculo
+app.post("/alunos",createalunos);
+app.get("/alunos", readalunos);
+app.put("/alunos", updatealunos);
+app.delete("/alunos/:endereco", deletealunos);
 
 
-// Teste e porta no console
-app.listen(3000, () => {
+//Teste de porta
+app.listen(3300, () => {
     console.log("Servidor rodando na porta 3000");
 });
