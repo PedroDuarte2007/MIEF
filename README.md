@@ -6,7 +6,7 @@
 
 
 ![bbbbb](https://github.com/user-attachments/assets/feee7b7f-4724-484b-bba2-763c499f4c9e)
-
-<center><h1><b>Linguagens Utilizadas</b></h1></center>
-
+<div align = center>
+<h1><b>Linguagens Utilizadas</b></h1>
 ![download](https://github.com/user-attachments/assets/05910839-827c-4d8e-ae91-1e1cd15d4b3c)
+</div>
