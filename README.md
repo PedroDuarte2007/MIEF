@@ -1,4 +1,4 @@
-![download](https://github.com/user-attachments/assets/54c58d62-b0a5-4ee5-87e9-a0a95e87c73e)<h1><b>GitHub para colocar os codigos do Projeto de Software (Back, Front e Banco) MIEF</b></h1>
+<h1><b>GitHub para colocar os codigos do Projeto de Software (Back, Front e Banco) MIEF</b></h1>
 
 ![cadastro](https://github.com/user-attachments/assets/503c8469-0d85-47de-a47e-fbcda1619cd3)
 
@@ -7,6 +7,6 @@
 
 ![bbbbb](https://github.com/user-attachments/assets/feee7b7f-4724-484b-bba2-763c499f4c9e)
 
-<h1><b>Linguagens Utilizadas</b></h1>
+<center><h1><b>Linguagens Utilizadas</b></h1></center>
 
 ![download](https://github.com/user-attachments/assets/05910839-827c-4d8e-ae91-1e1cd15d4b3c)
